@@ -1,0 +1,5 @@
+{
+  "python.analysis.autoImportCompletions": true,
+  "python.defaultInterpreterPath": "/home/paiva/projetoGiNodejs/backendPythonPdf/.venv/bin/python",
+  "python.analysis.typeCheckingMode": "off"
+}
