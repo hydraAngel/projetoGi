@@ -129,4 +129,15 @@ async def criarPdf(cod):
 @app.get("/criartodos")
 def aa():
     lista = [2767, 3093, 3026, 3216, 3095, 3175, 3072, 3191, 3215, 3212, 3180, 3140, 1941, 3201, 3129, 3024, 3123, 3098, 3138, 3202, 3130, 3176, 3186, 3137, 2610, 3162, 3211, 3102, 3163, 3141, 2962, 3136]
-        cursor.execute("SELECT nome FROM alunos WHERE cod_alu=" + str(cod))                                                     nome = cursor.fetchall()[0][0]                                                                                          sql = "SELECT materias.NOME, alunota.nota, alunota.falta, alunota.cursou FROM alunota JOIN materias ON alunota.cod_mat = materias.cod_mat WHERE cod_alu = %s ORDER BY materias.NOME"                                                            cursor.execute(sql, (str(cod),))                                                                                        # Fetch all rows from the query result                                                                                  rows = cursor.fetchall()                                                                                                                                                                                                                        # Modify the fetched data and store it in a_modified list                                                                                                                                                                                       a_modified = [(str(row[0]).strip(), row[1], row[2], row[3]) for row in rows]
+    for cod in lista:
+        cursor.execute("SELECT nome FROM alunos WHERE cod_alu=" + str(cod))
+        nome = cursor.fetchall()[0][0]
+        sql = "SELECT materias.NOME, alunota.nota, alunota.falta, alunota.cursou FROM alunota JOIN materias ON alunota.cod_mat = materias.cod_mat WHERE cod_alu = %s ORDER BY materias.NOME"
+        cursor.execute(sql, (str(cod),))
+        # Fetch all rows from the query result
+        rows = cursor.fetchall()
+        # Modify the fetched data and store it in a_modified list
+        a_modified = [(str(row[0]).strip(), row[1], row[2], row[3]) for row in rows]
+        createPdf(nome, a_modified, cod)
+    return "foi?"
+    
