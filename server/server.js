@@ -4,7 +4,7 @@ const mysql = require("mysql");
 const { log } = console;
 var htp = require("html-pdf-node");
 // var pdf = require("pdf-creator-node");
-// var fs = require("fs");
+// avar fs = require("fs");
 
 // var html = fs.readFileSync("template.html", "utf8");
 
@@ -12,7 +12,7 @@ var con = mysql.createConnection({
     host: "193.123.127.248",
     user: "root",
     password: "831842",
-    database: "stg",
+    database: "stgcopy",
 });
 
 con.connect(function (err) {
@@ -70,6 +70,6 @@ app.get("/alunos/notas/:codAlu", (req, res) => {
     );
 });
 
-app.listen(8000, () => {
-    console.log(`Server na porta 8000 `);
+app.listen(8080, () => {
+    console.log(`Server na porta 8080 `);
 });
