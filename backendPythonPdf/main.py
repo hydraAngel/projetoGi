@@ -139,5 +139,26 @@ def aa():
         # Modify the fetched data and store it in a_modified list
         a_modified = [(str(row[0]).strip(), row[1], row[2], row[3]) for row in rows]
         createPdf(nome, a_modified, cod)
-    return "foi?"
+    file_start_pattern = "Boletim_"
+    output_zip_file = "boletim_files.zip"
+    directory = '/home/ubuntu/projetoGi/backendPythonPdf'
+    with zipfile.ZipFile(output_zip_file, 'w') as zipf:
+        # Iterate over all the files in directory
+        for foldername, subfolders, filenames in os.walk(directory):
+            for filename in filenames:
+                # Check if the file starts with the desired pattern
+                if filename.startswith(file_start_pattern):
+                    # Create complete filepath of file in directory
+                    filepath = os.path.join(foldername, filename)
+                    # Add file to zip
+                    zipf.write(filepath, os.path.relpath(filepath, directory))
+                    os.remove(filepath)
+
+    headers = {"Content-Disposition": f"inline; filename=boletim_files.zip"}
+
+    # Create a FileResponse object with the file path, media type and headers
+    response = FileResponse(
+        f"boletim_files.zip", media_type="application/zip", headers=headers
+    )
+    return response
     
