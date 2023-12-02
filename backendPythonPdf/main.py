@@ -99,7 +99,7 @@ def createPdf(nome, notas, cod):
     pdf.table_rows()
 
     # Save the PDF to a file
-    pdf.output(f"Boletim_{cod}.pdf")
+    pdf.output(f"Boletim_{nome}.pdf")
 
 
 # Refactored route handler to fetch data from the database and return a modified list of tuples.
@@ -128,7 +128,7 @@ async def criarPdf(cod):
 
 @app.get("/criartodos")
 def aa():
-    lista = [3103,3203,3104,3192,3056,3144,3205,3139,3179,3071,3178,3193,3189,3200,3182,3177,3187,3184,3143,3108,3065]
+    lista = [3160, 1093, 3074, 3164, 1460, 3122, 79, 3206, 1459, 3134, 3199, 3146, 3168, 3174, 3152, 3216, 3112, 3207, 3045, 3172, 3083, 3147, 3198, 3135, 2505, 3214, 3161, 3170, 3173, 193]
     for cod in lista:
         cursor.execute("SELECT nome FROM alunos WHERE cod_alu=" + str(cod))
         nome = cursor.fetchall()[0][0]
