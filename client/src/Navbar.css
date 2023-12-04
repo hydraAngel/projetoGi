@@ -1,0 +1,30 @@
+nav {
+  background-color: #333; /* Cor de fundo da navbar */
+  color: white;
+  display: flex;
+  justify-content: space-around;
+  padding: 1em 0;
+  position: fixed; /* Fixa a navbar no topo */
+  top: 0;
+  width: 100%;
+}
+
+nav ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+}
+
+nav ul li {
+  display: inline;
+}
+
+nav ul li a {
+  color: white;
+  padding: 0.5em 1em;
+  text-decoration: none;
+}
+
+nav ul li a:hover {
+  background-color: #555;
+}

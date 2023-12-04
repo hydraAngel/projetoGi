@@ -1,0 +1,29 @@
+body {
+  background-color: #282c34;
+  color: white;
+  padding: 40px;
+  font-family: Arial;
+  text-align: center;
+}
+
+a {
+  color: white;
+  text-decoration: none;
+  font-weight: bold;
+  font-size: 25px;
+}
+
+a:hover {
+  color: #db8686;
+}
+
+.border {
+  /* Center vertically and horizontally */
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  margin: -25px 0 0 -300px; /* Apply negative top and left margins to truly center the element */
+  border: 1px solid red;
+  width: 600px;
+  height: 100px;
+}
