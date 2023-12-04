@@ -28,3 +28,15 @@ nav ul li a {
 nav ul li a:hover {
   background-color: #555;
 }
+
+@media (max-width: 600px) {
+    nav ul {
+        flex-direction: column;
+        width: 100%;
+    }
+
+    nav ul li {
+        display: block;
+        text-align: center;
+    }
+}
