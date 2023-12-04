@@ -9,3 +9,5 @@ function Aluno(){
     </>
   )
 }
+
+export default Aluno
