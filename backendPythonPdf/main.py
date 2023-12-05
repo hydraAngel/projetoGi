@@ -83,7 +83,7 @@ class PDF(FPDF):
 
 
 # Refactored function to convert HTML to PDF.
-def createPdf(nome, notas, cod):
+def createPdf(nome, notas, cod, todos: bool):
     pdf = PDF(nome_aluno=nome, notas=notas)
 
     # Set document title
@@ -97,10 +97,12 @@ def createPdf(nome, notas, cod):
     # Print the table with headers and rows
     pdf.table_header()
     pdf.table_rows()
-
+    
     # Save the PDF to a file
-    pdf.output(f"Boletim_{nome}.pdf")
-
+    if todos:
+        pdf.output(f"Boletim_{nome}.pdf")
+    else:
+        pdf.output(f"Boletim_{cod}.pdf")
 
 # Refactored route handler to fetch data from the database and return a modified list of tuples.
 @app.get("/criarPdf")
@@ -116,7 +118,7 @@ async def criarPdf(cod):
     # Modify the fetched data and store it in a_modified list
 
     a_modified = [(str(row[0]).strip(), row[1], row[2], row[3]) for row in rows]
-    createPdf(nome, notas=a_modified, cod=cod)
+    createPdf(nome, notas=a_modified, cod=cod, todos=False)
     headers = {"Content-Disposition": f"inline; filename=Boletim_{cod}.pdf"}
 
     # Create a FileResponse object with the file path, media type and headers
@@ -138,7 +140,7 @@ def aa():
         rows = cursor.fetchall()
         # Modify the fetched data and store it in a_modified list
         a_modified = [(str(row[0]).strip(), row[1], row[2], row[3]) for row in rows]
-        createPdf(nome, a_modified, cod)
+        createPdf(nome, a_modified, cod, todos=True)
     file_start_pattern = "Boletim_"
     output_zip_file = "boletim_files.zip"
     directory = '/home/ubuntu/projetoGi/backendPythonPdf'
