@@ -1,7 +1,7 @@
 {
   "name": "client",
   "version": "0.1.0",
-  "proxy": "http://193.123.127.248:8080",
+  "proxy": "http://verissimos.ddnsfree.com:8080",
   "private": true,
   "dependencies": {
     "@testing-library/jest-dom": "^5.17.0",
