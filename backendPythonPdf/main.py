@@ -5,6 +5,7 @@ from fpdf import FPDF
 from fastapi.responses import FileResponse
 import os
 import zipfile
+from time import sleep
 
 # Connect to MySQL database
 cnx = mysql.connector.connect(
@@ -130,7 +131,7 @@ async def criarPdf(cod):
 
 @app.get("/criartodos")
 def aa():
-    lista = [3160, 1093, 3074, 3164, 1460, 3122, 79, 3206, 1459, 3134, 3199, 3146, 3168, 3174, 3152, 3216, 3112, 3207, 3045, 3172, 3083, 3147, 3198, 3135, 2505, 3214, 3161, 3170, 3173, 193]
+    lista = [3171, 3153, 3208, 3148, 3154, 3149, 3086, 3076, 2718, 3133, 683, 3124, 3169, 3194, 3209, 3157, 3156, 3195, 3120, 3087, 3166, 3213, 2125, 3155, 2915, 3158, 3210,3159, 3041]
     for cod in lista:
         cursor.execute("SELECT nome FROM alunos WHERE cod_alu=" + str(cod))
         nome = cursor.fetchall()[0][0]
@@ -143,7 +144,8 @@ def aa():
         createPdf(nome, a_modified, cod, todos=True)
     file_start_pattern = "Boletim_"
     output_zip_file = "boletim_files.zip"
-    directory = '/home/ubuntu/projetoGi/backendPythonPdf'
+    directory = os.getcwd()
+    print(directory)
     with zipfile.ZipFile(output_zip_file, 'w') as zipf:
         # Iterate over all the files in directory
         for foldername, subfolders, filenames in os.walk(directory):
@@ -163,4 +165,7 @@ def aa():
         f"boletim_files.zip", media_type="application/zip", headers=headers
     )
     return response
-    
+
+while(True):
+    sleep(300)
+    cursor.execute("SELECT 1")

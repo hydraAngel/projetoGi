@@ -3,10 +3,7 @@ const cors = require("cors");
 const mysql = require("mysql");
 const { log } = console;
 var htp = require("html-pdf-node");
-// var pdf = require("pdf-creator-node");
-// avar fs = require("fs");
 
-// var html = fs.readFileSync("template.html", "utf8");
 
 var con = mysql.createConnection({
     host: "193.123.127.248",
@@ -28,7 +25,7 @@ app.use(express.json());
 app.get("/alunos", (req, res) => {
     con.query("SELECT * FROM alunos", function (err, result, fields) {
         if (err) throw err;
-        log(result);
+        log(result); 
         res.json(result);
     });
 });
