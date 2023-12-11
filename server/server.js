@@ -1,8 +1,13 @@
-const express = require("express");
 const cors = require("cors");
 const mysql = require("mysql");
 const { log } = console;
-var htp = require("html-pdf-node");
+var fs = require('fs'),
+    http = require('http'),
+    https = require('https'),
+    express = require('express');
+var privKey = fs.readFileSync('/home/ubuntu/privkey.pem')
+var certificate = fs.readFileSync('/home/ubuntu/cert.pem');
+
 
 
 var con = mysql.createConnection({
@@ -18,6 +23,10 @@ con.connect(function (err) {
 });
 
 const app = express();
+
+var server = https.createServer({privKey, certificate}, app).listen(8080, function() {
+	log("ouvindo na porta 8080")
+});
 
 app.use(cors());
 app.use(express.json());
@@ -67,6 +76,4 @@ app.get("/alunos/notas/:codAlu", (req, res) => {
     );
 });
 
-app.listen(8080, () => {
-    console.log(`Server na porta 8080 `);
-});
+
