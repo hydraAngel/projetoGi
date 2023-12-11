@@ -5,8 +5,10 @@ var fs = require('fs'),
     http = require('http'),
     https = require('https'),
     express = require('express');
-var privKey = fs.readFileSync('/home/ubuntu/privkey.pem')
-var certificate = fs.readFileSync('/home/ubuntu/cert.pem');
+
+
+var privKey = fs.readFileSync('./server.key')
+var certificate = fs.readFileSync('./server.cert');
 
 
 
@@ -24,7 +26,8 @@ con.connect(function (err) {
 
 const app = express();
 
-var server = https.createServer({privKey, certificate}, app).listen(8080, function() {
+var server = https.createServer({key: fs.readFileSync('/home/ubuntu/privkey.pem'),
+    cert: fs.readFileSync('/home/ubuntu/cert.pem')}, app).listen(8080, function() {
 	log("ouvindo na porta 8080")
 });
 
