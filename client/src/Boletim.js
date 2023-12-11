@@ -19,7 +19,7 @@ function Boletim() {
   }
   const getAluno = (code) => {
     document.cookie = "code=" + code;
-    fetch("https://193.123.127.248:8080/alunos/" + code)
+    fetch("https://verissimos.ddnsfree.com:8080/alunos/" + code)
       .then((response) => response.json())
       .then((data) => {
         if (data.length === 1) {
