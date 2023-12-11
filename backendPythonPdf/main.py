@@ -166,6 +166,3 @@ def aa():
     )
     return response
 
-while(True):
-    sleep(300)
-    cursor.execute("SELECT 1")
