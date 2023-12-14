@@ -43,7 +43,7 @@ app.get("/alunos", (req, res) => {
 });
 
 app.get("/lista", (req, res) => {
-    con.query("SELECT cod_alu, nome FROM alunos", function (err, result, fields) {
+    con.query("SELECT cod_alu, nome FROM alunos ORDER BY cod_alu ASC", function (err, result, fields) {
         if (err) throw err;
         log(result); 
         res.json(result);
