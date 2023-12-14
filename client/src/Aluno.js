@@ -1,11 +1,12 @@
 import React, { useState } from "react";
 import "./Aluno.css";
-
+import Cadastrar from './Cadastrar.js'
 function Aluno(){
   return (
     <>
-      <h1>Estamos adicionando mais coisas.</h1>
-      <p>Ass: Programador</p>
+      <form action={Cadastrar}>
+
+      </form>
     </>
   )
 }
