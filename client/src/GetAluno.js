@@ -1,5 +1,4 @@
 export function getAluno(code) {
-    document.cookie = "code=" + code;
     fetch("https://verissimos.ddnsfree.com:8080/alunos/" + code)
         .then((response) => response.json())
         .then((data) => {
