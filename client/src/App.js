@@ -5,7 +5,7 @@ import Boletim from './Boletim'
 import Aluno from "./Aluno";
 import Navbar from './Navbar';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-
+import Carta from './Carta'
 function App() {
   
   return (
@@ -15,6 +15,7 @@ function App() {
             {/* <Route path="/" element={<Home />}></Route> */}
             <Route path="/boletim" element={<Boletim />}></Route>
             <Route path="/alunos" element={<Aluno />}></Route>
+            <Route path="/carta" element={<Carta/>}></Route>
         </Routes>
     </Router>
   );
